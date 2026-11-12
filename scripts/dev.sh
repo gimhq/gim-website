@@ -12,6 +12,7 @@ set -euo pipefail
 name="${NSL_NAME:-gim}"
 port="${PORT:-4321}"
 
+bun run docs:prepare
 astro dev --port "$port"
 nsl route "$name" "$port" --force
 

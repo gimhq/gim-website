@@ -1,0 +1,11 @@
+---
+import type { LocaleCode } from '@/shared/i18n'
+import SiteHeader from '@/components/SiteHeader.astro'
+import { copyFor, localePathsFromUrl } from '@/shared/i18n'
+
+// Starlight's root locale (English) has no locale key.
+const { locale } = Astro.locals.starlightRoute
+const code: LocaleCode = locale === 'zh' ? 'zh' : 'en'
+---
+
+<SiteHeader copy={copyFor(code)} locale={code} paths={localePathsFromUrl(Astro.url.pathname)} flush />

@@ -11,14 +11,20 @@ interface Props {
   locale: LocaleCode
   /** Where each locale serves the current page. */
   paths: Record<LocaleCode, string>
+  /** Set inside Starlight's layout, which pads its own header container. */
+  flush?: boolean
 }
 
-const { copy, locale, paths } = Astro.props
+const { copy, locale, paths, flush = false } = Astro.props
 const navLink = 'rounded-lg px-2.5 py-1.5 text-sm whitespace-nowrap text-muted-foreground no-underline transition-colors hover:bg-accent hover:text-foreground hover:no-underline'
 ---
 
-<header class="sticky top-0 z-40 border-b border-transparent bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
-  <nav class="mx-auto flex max-w-[1120px] items-center gap-2 px-gutter py-3">
+<header
+  class:list={flush
+    ? 'h-full'
+    : 'sticky top-0 z-40 border-b border-transparent bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60'}
+>
+  <nav class:list={['flex items-center gap-2', flush ? 'h-full max-md:pr-12' : 'mx-auto max-w-[1120px] px-gutter py-3']}>
     <a
       href={localePath(locale)}
       aria-label={copy.nav.home}
@@ -29,6 +35,7 @@ const navLink = 'rounded-lg px-2.5 py-1.5 text-sm whitespace-nowrap text-muted-f
     </a>
     <span class="min-w-3 flex-1"></span>
     <a href={localePath(locale, 'download/')} class={navLink}>{copy.nav.download}</a>
+    <a href={localePath(locale, 'docs/')} class={navLink}>{copy.nav.docs}</a>
     <a href={GITHUB_ORG_URL} class:list={[navLink, 'hidden sm:inline']}>{copy.nav.github}</a>
     <ThemeSelect
       client:load

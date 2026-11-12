@@ -19,6 +19,7 @@ export interface Copy {
   nav: {
     home: string
     download: string
+    docs: string
     github: string
     themeLabel: string
     themeAuto: string
@@ -59,6 +60,12 @@ export interface Copy {
       windows: Platform
       cli: Platform & { usage: string }
     }
+  }
+  docs: {
+    title: string
+    heading: string
+    sub: string
+    groups: { start: string, servers: string }
   }
   footer: { org: string, tagline: string }
 }

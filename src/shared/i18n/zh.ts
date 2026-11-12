@@ -12,6 +12,7 @@ export const zh: Copy = {
   nav: {
     home: 'gim 首页',
     download: '下载',
+    docs: '文档',
     github: 'GitHub',
     themeLabel: '主题',
     themeAuto: '跟随系统',
@@ -135,6 +136,15 @@ export const zh: Copy = {
         note: 'gim 是用于脚本和测试的命令行客户端，位于 gim-client-sdk。需要 Rust 工具链和 C 编译器：',
         usage: '每条命令都需要一个配置目录；register 会在 hub.g.im 上创建它：',
       },
+    },
+  },
+  docs: {
+    title: 'gim 文档',
+    heading: '文档',
+    sub: '安装应用、账号与设备，以及 gim 使用的服务器。',
+    groups: {
+      start: '入门',
+      servers: '服务器',
     },
   },
   footer: {

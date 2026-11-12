@@ -12,6 +12,7 @@ export const en: Copy = {
   nav: {
     home: 'gim home',
     download: 'Download',
+    docs: 'Docs',
     github: 'GitHub',
     themeLabel: 'Theme',
     themeAuto: 'System',
@@ -135,6 +136,15 @@ export const en: Copy = {
         note: 'gim is a command-line client for scripts and testing, in gim-client-sdk. Build it with a Rust toolchain and a C compiler:',
         usage: 'Every command takes a profile directory; register creates one on hub.g.im:',
       },
+    },
+  },
+  docs: {
+    title: 'gim documentation',
+    heading: 'Documentation',
+    sub: 'Installing the apps, your account and devices, and the servers gim uses.',
+    groups: {
+      start: 'Getting started',
+      servers: 'Servers',
     },
   },
   footer: {

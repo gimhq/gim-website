@@ -1,0 +1,20 @@
+{
+  "$comment": "The allowlist of documents the site publishes from docs/. A file is published by appearing here, never by existing there. `name` is the document; `dir` is its directory under docs/, and an entry without one sits at the root; `slug` overrides the site path, which is otherwise `<dir>/<name>`; `locales` defaults to both. Groups are the sidebar's, in order.",
+  "groups": [
+    {
+      "id": "start",
+      "docs": [
+        { "name": "overview", "dir": "start" },
+        { "name": "install", "dir": "start" },
+        { "name": "account", "dir": "start" }
+      ]
+    },
+    {
+      "id": "servers",
+      "docs": [
+        { "name": "overview", "dir": "servers" },
+        { "name": "self-host", "dir": "servers" }
+      ]
+    }
+  ]
+}

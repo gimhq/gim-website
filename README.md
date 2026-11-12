@@ -12,10 +12,20 @@ and language pickers. Fonts are self-hosted through `@fontsource`. No analytics,
 |---|---|
 | `/`, `/zh/` | Landing: what gim is, built-in servers, self-hosting |
 | `/download/`, `/zh/download/` | Downloads: Android, macOS, iOS and Windows (coming soon), CLI |
+| `/docs/`, `/zh/docs/` | Documentation portal; pages under `/docs/<dir>/<name>/` (Starlight) |
 
 Language: the English pages carry an inline script that sends a browser whose first preferred
 language is Chinese to the `/zh/` page before first paint. Picking a language in the header
 stores the choice (`localStorage` key `gim-site-lang`), which overrides the browser.
+
+## Documentation
+
+Sources live in `docs/`: English at `docs/<dir>/<name>.md`, Chinese at `docs/zh/<dir>/<name>.md`.
+A document is published only when `published-docs.json` lists it; the groups there are the
+sidebar's, in order. `bun run docs:prepare` (run by `dev`, `build` and `typecheck`) copies the
+listed files into `src/content/docs/` (generated, gitignored), turns each H1 into the page title
+and rewrites relative `.md` links to site URLs, or to GitHub for files that are not published. A
+missing source or a broken link fails the build.
 
 ## Download links
 

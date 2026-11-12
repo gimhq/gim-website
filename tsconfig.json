@@ -13,5 +13,5 @@
     "erasableSyntaxOnly": true
   },
   "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist", "node_modules", ".tmp"]
+  "exclude": ["dist", "node_modules", ".tmp", "src/content/docs"]
 }

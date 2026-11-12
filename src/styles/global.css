@@ -179,3 +179,41 @@
     outline-offset: 2px;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Starlight. Stock components, stock greys, stock code blocks; the brand accent
+   is the only intervention.
+   --------------------------------------------------------------------------- */
+
+:root {
+  /* Starlight paints `accent-low` as text on an `accent-high` fill, so it has to
+     stay opaque and follow the scheme. */
+  --sl-color-accent-low: color-mix(in srgb, var(--brand) 15%, var(--background));
+  --sl-color-accent: var(--brand);
+  --sl-color-accent-high: var(--brand-strong);
+
+  /* Starlight's default stack has no Chinese face; the fallback breaks CJK
+     spacing and splits digits. */
+  --sl-font: var(--font-sans);
+  --sl-font-mono: var(--font-mono);
+
+  --sl-nav-height: 3.5rem;
+  --sl-nav-pad-y: 0;
+}
+
+/* Starlight also bolds the current entry, which re-wraps the longer ones. The
+   fill is marker enough. */
+.sidebar-content a[aria-current='page'] {
+  font-weight: inherit;
+}
+
+/* Tailwind's preflight strips list markers; documents need them back. */
+.sl-markdown-content ol {
+  list-style: decimal;
+  padding-inline-start: 1.5rem;
+}
+
+.sl-markdown-content ul {
+  list-style: disc;
+  padding-inline-start: 1.5rem;
+}

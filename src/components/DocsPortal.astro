@@ -1,0 +1,53 @@
+---
+import type { LocaleCode } from '@/shared/i18n'
+import { getEntry } from 'astro:content'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import { DOC_GROUPS } from '@/shared/docs/published'
+import { siteUrl } from '@/shared/docs/transform'
+import { copyFor } from '@/shared/i18n'
+
+interface Props {
+  locale: LocaleCode
+}
+
+const { locale } = Astro.props
+const copy = copyFor(locale)
+const prefix = locale === 'en' ? 'docs' : `${locale}/docs`
+
+// Titles come from the prepared documents, so the portal never disagrees with them.
+const groups = await Promise.all(DOC_GROUPS.map(async group => ({
+  title: copy.docs.groups[group.id],
+  docs: await Promise.all(group.docs.map(async (doc) => {
+    const entry = await getEntry('docs', `${prefix}/${doc.slug}`)
+      ?? await getEntry('docs', `docs/${doc.slug}`)
+    return { href: siteUrl(locale, doc.slug), title: entry?.data.title ?? doc.slug }
+  })),
+})))
+---
+
+<BaseLayout locale={locale} path="docs/" title={copy.docs.title} description={copy.docs.sub}>
+  <header class="pt-16 pb-10 sm:pt-20">
+    <h1 class="m-0 text-[clamp(30px,5vw,44px)] leading-[1.15] font-semibold tracking-tight">
+      {copy.docs.heading}
+    </h1>
+    <p class="mt-3 mb-0 max-w-[62ch] text-muted-foreground sm:text-base">{copy.docs.sub}</p>
+  </header>
+  <div class="grid gap-4 md:grid-cols-2">
+    {
+      groups.map(group => (
+        <section class="rounded-xl bg-card p-6 ring-1 ring-foreground/10">
+          <h2 class="m-0 mb-3 text-base font-semibold">{group.title}</h2>
+          <ul class="m-0 list-none space-y-1 p-0">
+            {group.docs.map(doc => (
+              <li>
+                <a href={doc.href} class="-mx-2 block rounded-lg px-2 py-1.5 text-[15px] hover:bg-accent hover:no-underline">
+                  {doc.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+  </div>
+</BaseLayout>

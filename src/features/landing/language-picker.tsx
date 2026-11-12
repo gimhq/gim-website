@@ -31,7 +31,7 @@ export function LanguagePicker({ locale, label, paths }: LanguagePickerProps) {
     >
       <SelectTrigger aria-label={label} className="flex-none gap-1 border-transparent bg-transparent px-2 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground data-popup-open:bg-accent data-popup-open:text-foreground dark:bg-transparent">
         <Globe className="size-4" strokeWidth={1.5} aria-hidden="true" />
-        <SelectValue className="hidden sm:flex" />
+        <SelectValue className="max-sm:hidden!" />
       </SelectTrigger>
       <SelectContent className="w-auto min-w-0">
         {ITEMS.map(item => (
