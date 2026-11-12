@@ -23,7 +23,7 @@ export const zh: Copy = {
   hero: {
     eyebrow: '端到端加密的即时通讯',
     title: '只有聊天里的人，才能读到消息',
-    sub: 'gim 在你的设备上加密每一条消息和每一个文件，然后才发出。负责投递的服务器读不到内容；你的账号是一把由你掌握的密钥，而不是手机号。',
+    sub: 'gim 在你的设备上加密每一条消息和每一个文件，然后才发出。负责投递的 Hub 读不到内容，还可以同时使用多个；你的账号是一把由你掌握的密钥，而不是手机号。',
     cta: '下载',
     source: '在 GitHub 查看源码',
   },
@@ -61,9 +61,9 @@ export const zh: Copy = {
         body: 'Hub 是在设备之间传递消息的服务器。它经手的只有密文，看不到你写了什么。',
       },
       {
-        icon: 'network',
-        title: '不止一个 Hub',
-        body: '一个账号可以同时使用多个 Hub。其中一个宕机时，消息仍会从其他 Hub 送达。互相联邦的 Hub，其用户之间也能互相聊天。',
+        icon: 'eye-off',
+        title: '设置只属于你',
+        body: '已读回执、输入提示和屏蔽名单保存在你的设备上，并在设备之间加密同步。Hub 看不到它们。',
       },
       {
         icon: 'smartphone',
@@ -71,6 +71,43 @@ export const zh: Copy = {
         body: '添加手机或电脑时，扫描二维码，再确认两块屏幕上的六位数字一致即可。',
       },
     ],
+  },
+  multiHub: {
+    title: '一个账号，多个 Hub',
+    sub: '你的账号不绑定在某一台服务器上。它可以同时登记在最多 16 个 Hub 上，你的每台设备都会同时使用它们。',
+    diagram: {
+      label: '你的设备连接三个 Hub，其中一个宕机',
+      you: '你的设备',
+      online: '在线',
+      down: '宕机',
+      own: '你自己的 Hub',
+      friend: '朋友的 Hub',
+      caption: '一个 Hub 宕机，消息照样从另外两个送达。',
+    },
+    items: [
+      {
+        icon: 'server-crash',
+        title: '某个 Hub 宕机也能继续用',
+        body: '你的设备同时连接所有 Hub。其中一个停了，消息照样从其他 Hub 送达，发送也会自动换到下一个 Hub。无论哪个 Hub 先送到，每条消息都只显示一次，顺序不变。',
+      },
+      {
+        icon: 'arrow-right-left',
+        title: '换 Hub 不用从头再来',
+        body: '添加新的 Hub，并把它设为优先发送。账号 ID 来自你的密钥，而不是某个 Hub，所以账号不变，聊天也照常继续。',
+      },
+      {
+        icon: 'shield-check',
+        title: '没有哪个 Hub 能拿走你的账号',
+        body: '你的 Hub 列表由根密钥签名，而根密钥从不交给任何 Hub。只有你自己的设备能添加或移除 Hub。',
+      },
+      {
+        icon: 'network',
+        title: '公共 Hub 与自建 Hub 并用',
+        body: '可以同时使用 hub.g.im、你自己部署的 Hub，或你信任的人运营的 Hub。互相联邦的 Hub，其用户之间也能互相聊天。',
+      },
+    ],
+    note: '每个聊天由创建它的 Hub 负责：那个 Hub 宕机时，这个聊天会等它恢复，其他聊天不受影响。',
+    more: '了解 Hub 的工作方式',
   },
   servers: {
     title: '内置服务器，可以替换',

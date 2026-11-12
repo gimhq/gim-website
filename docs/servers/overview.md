@@ -11,6 +11,16 @@ An account can be listed on several hubs. While sync runs, your devices follow e
 is down, messages keep arriving through the others, each shown once. You can add or remove hubs
 and pick the one that sends first in the app's server settings.
 
+Because your hubs all carry the same messages, a hub going down does not cut you off: you keep
+receiving through the others, and sending moves to the next hub in your list. One limit: a chat is
+run by the hub it was created on, so while that hub is down, that chat waits for it to come back;
+your other chats carry on.
+
+Your account ID comes from your root key, not from a hub, and the list of your hubs is signed with
+that key, which no hub ever holds. To move to another hub, add it and make it the one you send
+through first; the hub you signed up on stays in the list as a secondary one. A username belongs
+to one hub, so claim it again on the new hub if you want one there.
+
 To use another hub from the start, change the server field before you create or restore the
 account (Android), or pass `--server URL` to `gim register` (command line).
 

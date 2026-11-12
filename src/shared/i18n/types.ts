@@ -1,4 +1,5 @@
-export type FeatureIcon = 'lock' | 'key' | 'life-buoy' | 'server' | 'network' | 'smartphone'
+export type FeatureIcon = 'lock' | 'key' | 'life-buoy' | 'server' | 'eye-off' | 'smartphone'
+export type MultiHubIcon = 'server-crash' | 'arrow-right-left' | 'shield-check' | 'network'
 
 interface Platform {
   name: string
@@ -33,6 +34,14 @@ export interface Copy {
     title: string
     sub: string
     items: { icon: FeatureIcon, title: string, body: string }[]
+  }
+  multiHub: {
+    title: string
+    sub: string
+    diagram: { label: string, you: string, online: string, down: string, own: string, friend: string, caption: string }
+    items: { icon: MultiHubIcon, title: string, body: string }[]
+    note: string
+    more: string
   }
   servers: {
     title: string

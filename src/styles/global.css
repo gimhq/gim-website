@@ -217,3 +217,24 @@
   list-style: disc;
   padding-inline-start: 1.5rem;
 }
+
+/* The multi-hub diagram: a message dot travelling from a hub to the devices. */
+@keyframes hub-flow {
+  from {
+    left: 100%;
+  }
+  to {
+    left: -6px;
+  }
+}
+
+.hub-flow {
+  animation: hub-flow 2.4s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hub-flow {
+    animation: none;
+    left: 50%;
+  }
+}

@@ -2,7 +2,7 @@ import type { Copy } from './types'
 import { en } from './en'
 import { zh } from './zh'
 
-export type { Copy, FeatureIcon } from './types'
+export type { Copy, FeatureIcon, MultiHubIcon } from './types'
 
 export const locales = [
   { code: 'en', label: en.label },

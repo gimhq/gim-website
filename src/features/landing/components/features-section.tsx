@@ -1,6 +1,6 @@
 import type { LucideIcon } from 'lucide-react'
 import type { Copy, FeatureIcon } from '@/shared/i18n'
-import { KeyRound, LifeBuoy, Lock, Network, Server, Smartphone } from 'lucide-react'
+import { EyeOff, KeyRound, LifeBuoy, Lock, Server, Smartphone } from 'lucide-react'
 import { Card } from '@/shared/components/ui/card'
 import { SectionHeading } from './section-heading'
 
@@ -9,7 +9,7 @@ const ICONS: Record<FeatureIcon, LucideIcon> = {
   'key': KeyRound,
   'life-buoy': LifeBuoy,
   'server': Server,
-  'network': Network,
+  'eye-off': EyeOff,
   'smartphone': Smartphone,
 }
 
