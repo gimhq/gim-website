@@ -26,7 +26,7 @@ a matching asset and links the asset directly with version, date, size and SHA-2
 fails, the card links the repository's releases page instead. `GITHUB_TOKEN` is used when set
 (CI passes the workflow token) to avoid the anonymous rate limit.
 
-The Pages workflow rebuilds daily and on manual dispatch, so new releases show up without a commit.
+The Deploy workflow rebuilds daily and on manual dispatch, so new releases show up without a commit.
 
 ## Develop
 
@@ -45,32 +45,24 @@ Output is `dist/`.
 
 ## Deploy
 
+Hosted on Cloudflare Workers as static assets (`wrangler.jsonc`: `./dist`, no Worker script),
+bound to `g.im` and `www.g.im` as custom domains.
+
 - `.github/workflows/ci.yml`: lint, typecheck, test and build on every push and pull request.
-- `.github/workflows/pages.yml`: builds and deploys to GitHub Pages on push to `main`, daily at
-  03:17 UTC and on `workflow_dispatch`. `public/CNAME` holds `g.im`.
+- `.github/workflows/deploy.yml`: builds and uploads with `wrangler deploy` on push to `main`,
+  daily at 03:17 UTC and on `workflow_dispatch`.
+
+Check the config locally without uploading: `bun x wrangler@4.131.2 deploy --dry-run` (after
+`bun run build`).
 
 ### One-time setup for the owner
 
-1. GitHub Pages on a private repository needs a paid plan; otherwise make the repository public
-   (Settings → General → Danger Zone → Change visibility).
-2. Settings → Pages → Build and deployment → Source: **GitHub Actions**.
-3. Settings → Pages → Custom domain: `g.im`, then enable **Enforce HTTPS** once the certificate
-   is issued.
-4. At the registrar of `g.im`, add the GitHub Pages apex records (remove other `A`/`AAAA`
-   records on the apex first):
-
-   | Type | Name | Value |
-   |---|---|---|
-   | A | `@` | `185.199.108.153` |
-   | A | `@` | `185.199.109.153` |
-   | A | `@` | `185.199.110.153` |
-   | A | `@` | `185.199.111.153` |
-   | AAAA | `@` | `2606:50c0:8000::153` |
-   | AAAA | `@` | `2606:50c0:8001::153` |
-   | AAAA | `@` | `2606:50c0:8002::153` |
-   | AAAA | `@` | `2606:50c0:8003::153` |
-
-   Optionally `www` as `CNAME` to `gimhq.github.io`, which GitHub then redirects to `g.im`.
-5. Optional: verify `g.im` for the `gimhq` organization (org Settings → Pages → Verified domains,
-   a `TXT` record) so no other account can claim it.
-6. Run the Pages workflow once (Actions → Pages → Run workflow), or push to `main`.
+1. Repository secrets (Settings → Secrets and variables → Actions):
+   - `CLOUDFLARE_ACCOUNT_ID`: the account that holds the `g.im` zone.
+   - `CLOUDFLARE_API_TOKEN`: an API token with **Account › Workers Scripts › Edit** and, for the
+     custom domains, **Zone › Workers Routes › Edit** and **Zone › DNS › Edit** on `g.im`.
+2. The `g.im` zone must be active on that Cloudflare account: add the site in the Cloudflare
+   dashboard and switch the nameservers at the registrar (currently `ns1/ns2.tname.com`) to the
+   two Cloudflare assigns. Copy the existing records first (e.g. `hub.g.im`, `keep.g.im`), so they
+   keep resolving. Wrangler then creates the `g.im` and `www.g.im` records itself.
+3. Run the Deploy workflow once (Actions → Deploy → Run workflow), or push to `main`.

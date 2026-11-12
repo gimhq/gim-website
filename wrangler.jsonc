@@ -1,0 +1,14 @@
+{
+  // Static assets only: Cloudflare serves ./dist, there is no Worker script.
+  "name": "gim-website",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./dist",
+    "html_handling": "auto-trailing-slash"
+  },
+  // The g.im zone has to be active on the same Cloudflare account.
+  "routes": [
+    { "pattern": "g.im", "custom_domain": true },
+    { "pattern": "www.g.im", "custom_domain": true }
+  ]
+}

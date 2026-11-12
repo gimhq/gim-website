@@ -9,3 +9,4 @@ coverage/
 .DS_Store
 # local scratch: screenshots, temp files
 .tmp/
+.wrangler/
