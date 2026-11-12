@@ -12,8 +12,8 @@ inside the encrypted message, never to a server.
 ## Your account is a key
 
 Creating an account makes a root key on your device; your account ID is derived from it. No phone
-number or email is asked for. A username (handle) is optional. Your recovery kit brings the account
-back if you lose every device ([account and devices](account.md)).
+number or email is asked for, and there is no username: others find you by your account ID. Your
+recovery kit brings the account back if you lose every device ([account and devices](account.md)).
 
 ## Hubs deliver, they do not read
 

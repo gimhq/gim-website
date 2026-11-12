@@ -7,8 +7,9 @@ your recovery key, written together as one text. The recovery key is stored nowh
 shown once: save the kit (copy it, share it to a password manager, or save it as a file). The app
 asks for the last four characters of the key to check that you kept it.
 
-After that you can claim a username, which others use to find you. It is optional; your account
-ID always works.
+Others find you by your account ID: show them your QR code or share the ID. There are no
+usernames: hubs are self-hosted, so a name taken on one hub could belong to someone else on
+another.
 
 ## Link another device
 

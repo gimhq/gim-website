@@ -18,8 +18,7 @@ your other chats carry on.
 
 Your account ID comes from your root key, not from a hub, and the list of your hubs is signed with
 that key, which no hub ever holds. To move to another hub, add it and make it the one you send
-through first; the hub you signed up on stays in the list as a secondary one. A username belongs
-to one hub, so claim it again on the new hub if you want one there.
+through first; the hub you signed up on stays in the list as a secondary one.
 
 To use another hub from the start, change the server field before you create or restore the
 account (Android), or pass `--server URL` to `gim register` (command line).
