@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { rewriteLinks, siteUrl, takeTitle } from './transform'
+import { rewriteLinks, siteUrl, sourceNote, takeTitle } from './transform'
 
 const slugBySource = new Map([
   ['user/quickstart.md', 'user/quickstart'],
@@ -21,7 +21,7 @@ const upstreamPaths = new Set([
 ])
 
 function rewrite(body: string, sourcePath = 'user/quickstart.md', locale: 'zh' | 'en' = 'en') {
-  return rewriteLinks(body, { sourcePath, locale, slugBySource, upstreamPaths })
+  return rewriteLinks(body, { sourcePath, locale, slugBySource, upstreamPaths, blobBase: 'https://github.com/gimhq/gim-website/blob/main/docs' })
 }
 
 describe('takeTitle', () => {
@@ -100,5 +100,14 @@ describe('rewriteLinks', () => {
     const result = rewrite('[a](install.md) and [b](install.md) and [c](../design/build.md)')
     expect(result.internal).toBe(2)
     expect(result.external).toBe(1)
+  })
+})
+
+describe('sourceNote', () => {
+  it('names the repository file and the commit it was copied at', () => {
+    const note = sourceNote('gim-hub', 'docs/operations.md', '453ee9e33db7aef65be4ecda6d8eb0512ee6fcb2')
+    expect(note).toContain('[`gimhq/gim-hub/docs/operations.md`](https://github.com/gimhq/gim-hub/blob/453ee9e33db7aef65be4ecda6d8eb0512ee6fcb2/docs/operations.md)')
+    expect(note).toContain('`453ee9e`')
+    expect(note.startsWith(':::note')).toBe(true)
   })
 })

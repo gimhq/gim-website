@@ -178,10 +178,11 @@ export const en: Copy = {
   docs: {
     title: 'gim documentation',
     heading: 'Documentation',
-    sub: 'Installing the apps, your account and devices, and the servers gim uses.',
+    sub: 'Installing the apps, your account and devices, the servers gim uses, and running your own hub.',
     groups: {
       start: 'Getting started',
       servers: 'Servers',
+      hub: 'Running a hub',
     },
   },
   footer: {

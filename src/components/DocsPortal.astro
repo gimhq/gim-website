@@ -18,8 +18,9 @@ const prefix = locale === 'en' ? 'docs' : `${locale}/docs`
 const groups = await Promise.all(DOC_GROUPS.map(async group => ({
   title: copy.docs.groups[group.id],
   docs: await Promise.all(group.docs.map(async (doc) => {
-    const entry = await getEntry('docs', `${prefix}/${doc.slug}`)
-      ?? await getEntry('docs', `docs/${doc.slug}`)
+    // Documents without a translation (the repository ones) fall back to English.
+    const id = doc.sources[locale] ? `${prefix}/${doc.slug}` : `docs/${doc.slug}`
+    const entry = await getEntry('docs', id)
     return { href: siteUrl(locale, doc.slug), title: entry?.data.title ?? doc.slug }
   })),
 })))

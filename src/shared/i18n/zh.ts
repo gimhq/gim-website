@@ -178,10 +178,11 @@ export const zh: Copy = {
   docs: {
     title: 'gim 文档',
     heading: '文档',
-    sub: '安装应用、账号与设备，以及 gim 使用的服务器。',
+    sub: '安装应用、账号与设备、gim 使用的服务器，以及自己运维 Hub。',
     groups: {
       start: '入门',
       servers: '服务器',
+      hub: '运维 Hub',
     },
   },
   footer: {

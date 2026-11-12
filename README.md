@@ -27,6 +27,14 @@ listed files into `src/content/docs/` (generated, gitignored), turns each H1 int
 and rewrites relative `.md` links to site URLs, or to GitHub for files that are not published. A
 missing source or a broken link fails the build.
 
+The hub operator pages (`/docs/hub/...`) are not copied by hand: entries with `"repo": "gim-hub"`
+in `published-docs.json` publish `docs/<name>.md` from gimhq/gim-hub. `docs:prepare` fetches the
+repository's default branch on every run (a shallow, blobless clone with only `docs/` checked out,
+cached in `.cache/upstream/`), so each build carries the same text as the repository; the daily
+deploy picks up changes without a commit here. Each page starts with a note naming the source file
+and commit. Links to other published pages stay on the site; the rest point at that commit on
+GitHub. `GIM_HUB_ROOT=/path/to/gim-hub` uses a local checkout instead (offline work).
+
 ## Download links
 
 The client builds are GitHub pre-releases, which `/releases/latest` does not return. At build time

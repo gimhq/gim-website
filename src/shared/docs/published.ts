@@ -4,16 +4,28 @@ import allowlist from '../../../published-docs.json'
 /**
  * The allowlist of documents this website publishes, read from
  * `published-docs.json`. A file is published by appearing there, never by
- * existing under `docs/`.
+ * existing under `docs/` or in an upstream repository.
  */
+
+/** Where a document comes from: this repository's `docs/`, or a gimhq repository. */
+export type DocRoot = 'local' | UpstreamRepo
+
+/** gimhq repositories whose own docs the site republishes, fetched at build time. */
+export const UPSTREAM_REPOS = ['gim-hub'] as const
+export type UpstreamRepo = (typeof UPSTREAM_REPOS)[number]
+
 export interface PublishedDoc {
   /** Path under `/docs/`, without extension. */
   slug: string
-  /** Upstream path relative to the documentation root, per locale. */
+  root: DocRoot
+  /**
+   * Source path per locale: relative to `docs/` for local documents, relative
+   * to the repository root for upstream ones.
+   */
   sources: Partial<Record<LocaleCode, string>>
 }
 
-export type GroupId = 'start' | 'servers'
+export type GroupId = 'start' | 'servers' | 'hub'
 
 export interface DocGroup {
   /** Key into `Copy['docs']['groups']` for the heading. */
@@ -29,23 +41,28 @@ interface AllowlistDoc {
   /** The site slug, when it should not be `<dir>/<name>`. */
   slug?: string
   locales?: readonly string[]
+  /** A gimhq repository to read `docs/<name>.md` from, instead of this repository's `docs/`. */
+  repo?: UpstreamRepo
 }
 
 /**
- * Resolves one entry to its sources. English is `<dir>/<name>.md` and Chinese
- * `zh/<dir>/<name>.md` (no `<dir>/` for a root document), which is how `docs/` lays out every translated tree,
- * so a tree is published by being named here and nowhere else.
+ * Resolves one entry to its sources. Local English is `<dir>/<name>.md` and
+ * Chinese `zh/<dir>/<name>.md`; an upstream document is `docs/<name>.md` in its
+ * repository, which has English only.
  */
 function sourceDoc(entry: AllowlistDoc): PublishedDoc {
-  const { name, dir, locales = ['zh', 'en'] } = entry
+  const { name, dir, repo } = entry
   const path = dir ? `${dir}/${name}` : name
-  const slug = entry.slug ?? path
+  if (repo) {
+    return { slug: entry.slug ?? `${repo}/${name}`, root: repo, sources: { en: `docs/${name}.md` } }
+  }
+  const locales = entry.locales ?? ['zh', 'en']
   const sources: Partial<Record<LocaleCode, string>> = {}
   if (locales.includes('en'))
     sources.en = `${path}.md`
   if (locales.includes('zh'))
     sources.zh = `zh/${path}.md`
-  return { slug, sources }
+  return { slug: entry.slug ?? path, root: 'local', sources }
 }
 
 export const DOC_GROUPS: DocGroup[] = allowlist.groups.map(group => ({
@@ -55,9 +72,11 @@ export const DOC_GROUPS: DocGroup[] = allowlist.groups.map(group => ({
 
 export const PUBLISHED_DOCS: PublishedDoc[] = DOC_GROUPS.flatMap(group => group.docs)
 
-/** Upstream path -> site slug, for rewriting links between documents. */
-export const SLUG_BY_SOURCE: ReadonlyMap<string, string> = new Map(
-  PUBLISHED_DOCS.flatMap(doc =>
-    Object.values(doc.sources).map(source => [source, doc.slug] as const),
-  ),
-)
+/** Source path -> site slug within one root, for rewriting links between documents. */
+export function slugsBySource(root: DocRoot): ReadonlyMap<string, string> {
+  return new Map(
+    PUBLISHED_DOCS
+      .filter(doc => doc.root === root)
+      .flatMap(doc => Object.values(doc.sources).map(source => [source, doc.slug] as const)),
+  )
+}

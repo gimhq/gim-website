@@ -34,8 +34,9 @@ const navLink = 'rounded-lg px-2.5 py-1.5 text-sm whitespace-nowrap text-muted-f
       <span class="text-lg font-semibold tracking-tight">gim</span>
     </a>
     <span class="min-w-3 flex-1"></span>
-    <a href={localePath(locale, 'download/')} class={navLink}>{copy.nav.download}</a>
-    <a href={localePath(locale, 'docs/')} class={navLink}>{copy.nav.docs}</a>
+    {/* Inside the docs, narrow screens get the Starlight menu button instead. */}
+    <a href={localePath(locale, 'download/')} class:list={[navLink, flush && 'max-sm:hidden']}>{copy.nav.download}</a>
+    <a href={localePath(locale, 'docs/')} class:list={[navLink, flush && 'max-sm:hidden']}>{copy.nav.docs}</a>
     <a href={GITHUB_ORG_URL} class:list={[navLink, 'hidden sm:inline']}>{copy.nav.github}</a>
     <ThemeSelect
       client:load

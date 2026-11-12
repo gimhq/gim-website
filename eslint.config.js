@@ -6,7 +6,7 @@ export default antfu(
     react: true,
     astro: true,
     typescript: true,
-    ignores: ['dist/**', '.astro/**', '.tmp/**', 'src/content/docs/**'],
+    ignores: ['dist/**', '.astro/**', '.tmp/**', '.cache/**', 'src/content/docs/**'],
   },
   {
     // Registry output: its house style is the registry's, not ours. Diverging

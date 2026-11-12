@@ -17,8 +17,9 @@ curl http://127.0.0.1:8080/healthz
 ```
 
 Linux builds for x86_64 and aarch64 are on the
-[releases page](https://github.com/gimhq/gim-hub/releases). Configuration, backups and federation
-are in [operations.md](https://github.com/gimhq/gim-hub/blob/main/docs/operations.md).
+[releases page](https://github.com/gimhq/gim-hub/releases). Configuration, the data directory,
+backups and federation are in [operating a hub](/docs/hub/operations/); the admin API and UI in
+[admin API](/docs/hub/admin/); waking phones in [push gateway](/docs/hub/push/).
 
 ## Keep server
 

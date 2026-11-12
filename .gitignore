@@ -12,3 +12,4 @@ coverage/
 .wrangler/
 # generated from docs/ by scripts/prepare-docs.ts
 src/content/docs/
+.cache/

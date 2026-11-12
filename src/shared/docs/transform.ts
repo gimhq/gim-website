@@ -1,7 +1,5 @@
 import type { LocaleCode } from '@/shared/i18n'
 
-export const BLOB_BASE = 'https://github.com/gimhq/gim-website/blob/main/docs'
-
 /** English, the root locale, is served without a URL prefix. */
 export function siteUrl(locale: LocaleCode, slug: string): string {
   return locale === 'en' ? `/docs/${slug}/` : `/${locale}/docs/${slug}/`
@@ -30,6 +28,8 @@ export interface LinkContext {
   slugBySource: ReadonlyMap<string, string>
   /** Every path that exists upstream; directories end with a slash. */
   upstreamPaths: ReadonlySet<string>
+  /** Where an unpublished upstream file is linked to, e.g. a GitHub blob URL of the root. */
+  blobBase: string
 }
 
 export interface RewriteResult {
@@ -66,7 +66,7 @@ function normalise(path: string): string {
  * missing -> reported as a problem.
  */
 export function rewriteLinks(body: string, context: LinkContext): RewriteResult {
-  const { sourcePath, locale, slugBySource, upstreamPaths } = context
+  const { sourcePath, locale, slugBySource, upstreamPaths, blobBase } = context
   const problems: string[] = []
   let internal = 0
   let external = 0
@@ -104,7 +104,7 @@ export function rewriteLinks(body: string, context: LinkContext): RewriteResult 
     }
 
     external += 1
-    return `${open}${BLOB_BASE}/${resolved}${anchor}${close}`
+    return `${open}${blobBase}/${resolved}${anchor}${close}`
   })
 
   return { body: rewritten, problems, internal, external }
@@ -112,4 +112,14 @@ export function rewriteLinks(body: string, context: LinkContext): RewriteResult 
 
 export function frontmatter(title: string): string {
   return `---\ntitle: ${JSON.stringify(title)}\n---\n\n`
+}
+
+/**
+ * The aside at the top of a document copied from another repository: where it
+ * comes from and at which commit, so the page and the repository can be
+ * compared at a glance.
+ */
+export function sourceNote(repo: string, path: string, commit: string): string {
+  const url = `https://github.com/gimhq/${repo}/blob/${commit}/${path}`
+  return `:::note[Source]\nCopied from [\`gimhq/${repo}/${path}\`](${url}) at commit \`${commit.slice(0, 7)}\` when the site was built. Edit it there.\n:::\n\n`
 }

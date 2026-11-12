@@ -74,7 +74,7 @@ export interface Copy {
     title: string
     heading: string
     sub: string
-    groups: { start: string, servers: string }
+    groups: { start: string, servers: string, hub: string }
   }
   footer: { org: string, tagline: string }
 }

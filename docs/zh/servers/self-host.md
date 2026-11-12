@@ -14,7 +14,7 @@ docker run -d --name gim-hub -p 8080:8080 -v gim-hub-data:/data gim-hub
 curl http://127.0.0.1:8080/healthz
 ```
 
-x86_64 和 aarch64 的 Linux 构建在[发布页](https://github.com/gimhq/gim-hub/releases)上。配置、备份和联邦见 [operations.md](https://github.com/gimhq/gim-hub/blob/main/docs/operations.md)。
+x86_64 和 aarch64 的 Linux 构建在[发布页](https://github.com/gimhq/gim-hub/releases)上。配置、数据目录、备份和联邦见[运维 Hub](/zh/docs/hub/operations/)；管理 API 和管理界面见[管理 API](/zh/docs/hub/admin/)；推送唤醒见[推送网关](/zh/docs/hub/push/)。这几篇来自 gim-hub 仓库，目前只有英文。
 
 ## Keep 服务器
 
