@@ -33,7 +33,7 @@
    Neutral greys with no hue, translucent borders, and a `primary` that is
    near-black rather than a brand colour.
 
-   The gim blue (from the app icon) is `brand`: links, focus rings, small
+   The gim blue (from the g mark's gradient) is `brand`: links, focus rings, small
    accents. It is not the interface colour.
    --------------------------------------------------------------------------- */
 
@@ -58,8 +58,8 @@
   --destructive: oklch(0.577 0.245 27.325);
 
   /* Retained brand accents. */
-  --brand: #3b6fc9;
-  --brand-strong: #2a56a3;
+  --brand: #2460ff;
+  --brand-strong: #1a49cc;
 
   --surface: var(--card);
   --divider: var(--border);
@@ -87,8 +87,8 @@
   --input: hsl(0 0% 40% / 20%);
   --destructive: oklch(0.704 0.191 22.216);
 
-  --brand: #6f9bf0;
-  --brand-strong: #a4c1f7;
+  --brand: #5b8cff;
+  --brand-strong: #9db9ff;
 }
 
 @theme inline {

@@ -4,7 +4,7 @@ import { ArrowRight, Server, Smartphone } from 'lucide-react'
 
 function Bubble({ text }: { text: string }) {
   return (
-    <span className="rounded-2xl rounded-br-md bg-[#3b6fc9] px-3 py-1.5 text-sm text-white">{text}</span>
+    <span className="rounded-2xl rounded-br-md bg-[#2460ff] px-3 py-1.5 text-sm text-white">{text}</span>
   )
 }
 
