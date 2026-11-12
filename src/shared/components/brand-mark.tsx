@@ -1,0 +1,11 @@
+import { cn } from '@/shared/lib/utils'
+
+/** The app icon's pixel G on its rounded square. */
+export function BrandIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 64 64" aria-hidden="true" className={cn('size-7', className)}>
+      <rect width="64" height="64" rx="14" fill="#3b6fc9" />
+      <path d="M12 12h40v8H20v24h24v-4H32v-8h20v20H12z" fill="#eff4fc" />
+    </svg>
+  )
+}

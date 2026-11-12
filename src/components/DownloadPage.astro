@@ -1,0 +1,19 @@
+---
+import type { LocaleCode } from '@/shared/i18n'
+import { DownloadSection } from '@/features/download/components/download-section'
+import { loadReleases } from '@/features/download/releases'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import { copyFor } from '@/shared/i18n'
+
+interface Props {
+  locale: LocaleCode
+}
+
+const { locale } = Astro.props
+const copy = copyFor(locale)
+const releases = await loadReleases()
+---
+
+<BaseLayout locale={locale} path="download/" title={copy.meta.downloadTitle} description={copy.meta.downloadDescription}>
+  <DownloadSection copy={copy} releases={releases} />
+</BaseLayout>

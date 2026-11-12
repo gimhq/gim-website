@@ -1,0 +1,25 @@
+---
+import type { LocaleCode } from '@/shared/i18n'
+import { FeaturesSection } from '@/features/landing/components/features-section'
+import { FlowDiagram } from '@/features/landing/components/flow-diagram'
+import { HeroSection } from '@/features/landing/components/hero-section'
+import { SelfHostSection } from '@/features/landing/components/self-host-section'
+import { ServersSection } from '@/features/landing/components/servers-section'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import { copyFor, localePath } from '@/shared/i18n'
+
+interface Props {
+  locale: LocaleCode
+}
+
+const { locale } = Astro.props
+const copy = copyFor(locale)
+---
+
+<BaseLayout locale={locale} path="" title={copy.meta.title} description={copy.meta.description}>
+  <HeroSection copy={copy} downloadHref={localePath(locale, 'download/')} />
+  <FlowDiagram copy={copy} />
+  <FeaturesSection copy={copy} />
+  <ServersSection copy={copy} />
+  <SelfHostSection copy={copy} />
+</BaseLayout>
