@@ -75,14 +75,23 @@ export const en: Copy = {
   multiHub: {
     title: 'One account, several hubs',
     sub: 'Your account is not tied to one server. List it on up to 16 hubs, and every one of your devices uses all of them.',
-    diagram: {
-      label: 'Your devices connected to three hubs, one of them down',
-      you: 'Your devices',
-      online: 'online',
-      down: 'down',
-      own: 'your own hub',
-      friend: 'a friend\'s hub',
-      caption: 'One hub is down; messages still arrive through the other two.',
+    flow: {
+      label: 'How a message from Alice reaches Bob when they use different hubs',
+      alice: 'Alice',
+      bob: 'Bob',
+      aliceDevices: 'phone and laptop',
+      bobDevices: 'phone',
+      primary: 'Alice · primary, runs the chat',
+      own: 'Alice · her own hub',
+      bobHub: 'Bob\'s hub',
+      down: 'Bob\'s hub · down',
+      legendPath: 'the message\'s path',
+      legendFallback: 'the way round when a hub cannot be reached',
+      steps: [
+        'Alice\'s device encrypts the message and sends it to her primary hub. If that hub cannot be reached, it goes to her next hub, which passes it on.',
+        'The hub that runs the chat puts the message in order and sends it to every hub Bob uses. Hubs talk to each other directly, if they allow each other.',
+        'Bob\'s devices read all of his hubs. One of them is down, so the message arrives through the other, and it is shown once.',
+      ],
     },
     items: [
       {

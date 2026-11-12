@@ -75,14 +75,23 @@ export const zh: Copy = {
   multiHub: {
     title: '一个账号，多个 Hub',
     sub: '你的账号不绑定在某一台服务器上。它可以同时登记在最多 16 个 Hub 上，你的每台设备都会同时使用它们。',
-    diagram: {
-      label: '你的设备连接三个 Hub，其中一个宕机',
-      you: '你的设备',
-      online: '在线',
-      down: '宕机',
-      own: '你自己的 Hub',
-      friend: '朋友的 Hub',
-      caption: '一个 Hub 宕机，消息照样从另外两个送达。',
+    flow: {
+      label: 'Alice 和 Bob 使用不同的 Hub 时，一条消息如何从 Alice 送到 Bob',
+      alice: 'Alice',
+      bob: 'Bob',
+      aliceDevices: '手机和电脑',
+      bobDevices: '手机',
+      primary: 'Alice · 主 Hub，负责这个聊天',
+      own: 'Alice · 她自己的 Hub',
+      bobHub: 'Bob 的 Hub',
+      down: 'Bob 的 Hub · 宕机',
+      legendPath: '消息的路径',
+      legendFallback: '某个 Hub 连不上时的备用路线',
+      steps: [
+        'Alice 的设备加密消息，发给她的主 Hub。主 Hub 连不上时，就发给她的下一个 Hub，由它转交。',
+        '负责这个聊天的 Hub 给消息排好顺序，再发给 Bob 使用的每一个 Hub。Hub 之间直接通信，前提是它们互相允许。',
+        'Bob 的设备同时读取他所有的 Hub。其中一个宕机，消息就从另一个送达，并且只显示一次。',
+      ],
     },
     items: [
       {

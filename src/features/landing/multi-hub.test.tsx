@@ -4,12 +4,15 @@ import { copyFor } from '@/shared/i18n'
 import { MultiHubSection } from './components/multi-hub-section'
 
 describe('multi-hub section', () => {
-  it('shows the four advantages, a hub that is down and a link to the docs', () => {
+  it('shows the flow between two users\' hubs, the four advantages and a link to the docs', () => {
     render(<MultiHubSection copy={copyFor('en')} docsHref="/docs/servers/overview/" />)
     expect(screen.getByRole('heading', { name: 'One account, several hubs' })).toBeInTheDocument()
     expect(screen.getAllByRole('heading', { level: 3 })).toHaveLength(4)
-    expect(screen.getByText('hub.g.im')).toBeInTheDocument()
-    expect(screen.getByText('a friend\'s hub · down')).toBeInTheDocument()
+    // Desktop and mobile layouts are both in the document; CSS shows one.
+    expect(screen.getAllByRole('img', { name: /Alice reaches Bob/ })).toHaveLength(2)
+    expect(screen.getAllByText('hub.g.im')).toHaveLength(2)
+    expect(screen.getAllByText('Bob\'s hub · down')).toHaveLength(2)
+    expect(screen.getAllByRole('listitem')).toHaveLength(3)
     expect(screen.getByRole('link', { name: 'How hubs work' })).toHaveAttribute('href', '/docs/servers/overview/')
   })
 })

@@ -38,7 +38,20 @@ export interface Copy {
   multiHub: {
     title: string
     sub: string
-    diagram: { label: string, you: string, online: string, down: string, own: string, friend: string, caption: string }
+    flow: {
+      label: string
+      alice: string
+      bob: string
+      aliceDevices: string
+      bobDevices: string
+      primary: string
+      own: string
+      bobHub: string
+      down: string
+      legendPath: string
+      legendFallback: string
+      steps: string[]
+    }
     items: { icon: MultiHubIcon, title: string, body: string }[]
     note: string
     more: string
