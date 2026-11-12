@@ -32,7 +32,14 @@ The Deploy workflow rebuilds daily and on manual dispatch, so new releases show 
 
 ```sh
 bun install
-bun run dev        # http://localhost:4321
+bun run dev        # serves gim.localhost through nsl (port 4321, PORT and NSL_NAME override)
+```
+
+`astro dev` daemonises itself, so the dev server keeps running after the command returns:
+
+```sh
+bun run dev:logs   # follow it
+bun run dev:stop   # shut it down
 ```
 
 Gate (CI runs the same):

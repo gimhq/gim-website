@@ -20,6 +20,7 @@
         "@antfu/eslint-config": "^9.5.1",
         "@astrojs/check": "^0.9.10",
         "@eslint-react/eslint-plugin": "^5.19.0",
+        "@nsio/nsl": "^0.1.7",
         "@tailwindcss/vite": "^4.3.3",
         "@testing-library/jest-dom": "^7.0.1",
         "@testing-library/react": "^16.3.3",
@@ -381,6 +382,18 @@
     "@nodelib/fs.stat": ["@nodelib/fs.stat@2.0.5", "", {}, "sha512-RkhPPp2zrqDAQA/2jNhnztcPAlv64XdhIp7a7454A5ovI7Bukxgt7MX7udwAu3zg1DcpPU0rz3VV1SeaqvY4+A=="],
 
     "@nodelib/fs.walk": ["@nodelib/fs.walk@1.2.8", "", { "dependencies": { "@nodelib/fs.scandir": "2.1.5", "fastq": "^1.6.0" } }, "sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg=="],
+
+    "@nsio/nsl": ["@nsio/nsl@0.1.7", "", { "optionalDependencies": { "@nsio/nsl-darwin-arm64": "0.1.7", "@nsio/nsl-darwin-x64": "0.1.7", "@nsio/nsl-linux-arm64": "0.1.7", "@nsio/nsl-linux-x64": "0.1.7", "@nsio/nsl-win32-x64": "0.1.7" }, "bin": { "nsl": "bin/nsl.js" } }, "sha512-mC+0Ft/AdIWbW+oW+4pVX96QvbjZV88hiSETh/z6wAa5C8s1TeUTTETvVkeNhBacm2WxWexH69fDqdB2Lgh13A=="],
+
+    "@nsio/nsl-darwin-arm64": ["@nsio/nsl-darwin-arm64@0.1.7", "", { "os": "darwin", "cpu": "arm64" }, "sha512-422GusrlWwO5oyHlpeAm5dlg5Hti8S6in5oJGmwtZxr9sG16o8ytKPGHofGWv6cf7XZXdPHFDG8ZJSLj07bBwg=="],
+
+    "@nsio/nsl-darwin-x64": ["@nsio/nsl-darwin-x64@0.1.7", "", { "os": "darwin", "cpu": "x64" }, "sha512-GswSfQofn9U+TSGtf6meG3rxg5fZ0KAdbQ5kiutOCsTwc3jeLslsXmZy12s5aAAcaUzEWw69K2n6RxzCtQmDvA=="],
+
+    "@nsio/nsl-linux-arm64": ["@nsio/nsl-linux-arm64@0.1.7", "", { "os": "linux", "cpu": "arm64" }, "sha512-QOPFaqvntp7CaOK1xD+7vKB3OyVpaWrZAU61FFnSniphh0+lpP/4QHtU9TkkTPf/GSAHH2xPI7OysFxJP3Q9Ww=="],
+
+    "@nsio/nsl-linux-x64": ["@nsio/nsl-linux-x64@0.1.7", "", { "os": "linux", "cpu": "x64" }, "sha512-yYJWb1xUkJJhGB91CQPdXjcQ8GCBdjqlOZ9Hl+YVcS7kN9nPVyicq2gyJuAipqXcNV+Ultf4F6W7p73ezYg7iw=="],
+
+    "@nsio/nsl-win32-x64": ["@nsio/nsl-win32-x64@0.1.7", "", { "os": "win32", "cpu": "x64" }, "sha512-fqUfi48GqIdJeYXi0JpbqC6mGH4amugQ5blRtd2SODikXULiWfjy2uvixXaUvnGCvBnXUhkoWimt3NvjDkyoYA=="],
 
     "@oslojs/encoding": ["@oslojs/encoding@1.1.0", "", {}, "sha512-70wQhgYmndg4GCPxPPxPGevRKqTIJ2Nh4OkiMWmDAVYsTQ+Ta7Sq+rPevXyXGdzr30/qZBnyOalCszoMxlyldQ=="],
 

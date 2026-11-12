@@ -9,4 +9,10 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  server: {
+    host: true,
+    // nsl fronts the dev server on *.localhost and a public dev domain, and
+    // that domain is not fixed.
+    allowedHosts: true,
+  },
 })
